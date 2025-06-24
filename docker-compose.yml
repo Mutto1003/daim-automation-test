@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  playwright:
+    build: .
+    environment:
+      - ENV=dev
+    volumes:
+      - ./:/app                   # แมปโฟลเดอร์โปรเจกต์
+      - ./playwright-report:/app/playwright-report  # แมปโฟลเดอร์ report ออกมา host
+    working_dir: /app
+    command: sh -c "npx playwright test --reporter=html --output=playwright-report && ls -la playwright-report"
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root           # กำหนดรหัสผ่าน root
+      MYSQL_DATABASE: tutorial            # กำหนดชื่อฐานข้อมูลเริ่มต้น (ถ้าต้องการ)
+      # MYSQL_USER: root                  # กำหนด user (ถ้าต้องการ)
+      # MYSQL_PASSWORD: user              # กำหนดรหัสผ่าน user
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    container_name: phpmyadmin_container
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
+
+volumes:
+  mysql-data:
+    driver: local
