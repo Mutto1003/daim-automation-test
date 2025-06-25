@@ -5,8 +5,6 @@ dotenv.config({
   path: `./env/.env.${process.env.ENV || 'dev'}`,
 });
 
-const lang = (process.env.LANG === 'th') ? 'th' : 'en';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

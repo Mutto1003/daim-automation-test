@@ -36,5 +36,26 @@
       "message": "invalid user id / not found"
     },
     "status": 400
+  },
+  "failedCasesInvalidFeeCalculation": {
+    "error": {
+      "code": "INVALID_FEE_CALCULATION",
+      "message": "invalid comm, vat calculation"
+    },
+    "status": 400
+  },
+  "failedCasesPriceControlValidation": {
+    "error": {
+      "code": "PRICE_CONTROL_VALIDATION",
+      "message": "invalid price (exceed/under 30%)"
+    },
+    "status": 400
+  },
+  "failedCasesInvalidVatCalculation": {
+    "error": {
+      "code": "INVALID_FEE_CALCULATION",
+      "message": "Invalid communication, VAT calculation"
+    },
+    "status": 400
   }
 }

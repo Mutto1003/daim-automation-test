@@ -50,6 +50,78 @@ test("TC_DIME_004: Validate that the api returns an error when the userId does n
   expect(res.error.message).toBe(responseReust.error.message);
 });
 
+test("TC_DIME_006: Validate that an incorrect commission (not 0.15% of the total) causes a validation error.", async ({
+  request,
+}) => {
+  // const apiContext = await request.newContext();
+  const headers = structuredClone(data.headers);
+  const baseBody = structuredClone(data.body);
+  const body = { ...baseBody, commission: 1.00 };
+  const responseReust = data.failedCasesInvalidFeeCalculation;
+  console.log(responseReust.error.message);
+
+  const response = await request.post("/qa-exam/create-order", {
+    headers: headers,
+    data: body,
+  });
+
+  const res = await response.json();
+
+  console.log(res);
+  expect(response.status()).toBe(responseReust.status);
+  expect(res.error).toBeDefined();
+  expect(res.error.code).toBe(responseReust.error.code);
+  expect(res.error.message).toBe(responseReust.error.message);
+});
+
+test("TC_DIME_007: Validate that an invalid VAT value (not 7% of commission) causes an error.", async ({
+  request,
+}) => {
+  // const apiContext = await request.newContext();
+  const headers = structuredClone(data.headers);
+  const baseBody = structuredClone(data.body);
+  const body = { ...baseBody, vat: 1.00 };
+  const responseReust = data.failedCasesInvalidVatCalculation;
+  console.log(responseReust.error.message);
+
+  const response = await request.post("/qa-exam/create-order", {
+    headers: headers,
+    data: body,
+  });
+
+  const res = await response.json();
+
+  console.log(res);
+  expect(response.status()).toBe(responseReust.status);
+  expect(res.error).toBeDefined();
+  expect(res.error.code).toBe(responseReust.error.code);
+  expect(res.error.message).toBe(responseReust.error.message);
+});
+
+test("TC_DIME_008: Validate that the API validates when the price exceeds 30% of the allowed threshold.", async ({
+  request,
+}) => {
+  // const apiContext = await request.newContext();
+  const headers = structuredClone(data.headers);
+  const baseBody = structuredClone(data.body);
+  const body = { ...baseBody, price: 1000 };
+  const responseReust = data.failedCasesPriceControlValidation;
+  console.log(responseReust.error.message);
+
+  const response = await request.post("/qa-exam/create-order", {
+    headers: headers,
+    data: body,
+  });
+
+  const res = await response.json();
+
+  console.log(res);
+  expect(response.status()).toBe(responseReust.status);
+  expect(res.error).toBeDefined();
+  expect(res.error.code).toBe(responseReust.error.code);
+  expect(res.error.message).toBe(responseReust.error.message);
+});
+
 test("TC_DIME_012: Validate that the API returns an error when an invalid request format is used. ", async ({
   request,
 }) => {
