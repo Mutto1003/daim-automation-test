@@ -1,0 +1,26 @@
+{
+  "headers": {
+    "Content-Type": "application/json",
+    "userId": "e6060427-5618-4a58-945d-b0a060478337"
+  },
+  "body": {
+    "price": 21.95,
+    "qty": 100,
+    "commission": 3.29,
+    "vat": 0.23,
+    "symbol": "KKP",
+    "stockId": "999901",
+    "orderType": "limit"
+  },
+  "data":{
+    "orderId": "TSB2025010500123",
+    "orderType": "limit",
+    "price": 21.95,
+    "qty":10.5,
+    "commission": 3.29,
+    "vat": 0.23,
+    "symbol": "KKP",
+    "stockId": "999901"
+  },
+  "status": 200
+}

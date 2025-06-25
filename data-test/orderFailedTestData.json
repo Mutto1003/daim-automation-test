@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "Content-Type": "application/json",
+    "userId": "e6060427-5618-4a58-945d-b0a060478337"
+  },
+  "body": {
+    "price": 21.95,
+    "qty": 100,
+    "commission": 3.29,
+    "vat": 0.23,
+    "symbol": "KKP",
+    "stockId": "999901",
+    "orderType": "limit"
+  },
+  "error": {
+    "code": "VALIDATE_FAILED",
+    "message": "invalid commission"
+  },
+  "failedCasesInvalidCommission": {
+    "error": {
+      "code": "VALIDATE_FAILED",
+      "message": "invalid commission"
+    },
+    "status": 400
+  },
+  "failedCasesInvalidRequestFormat": {
+    "error": {
+      "code": "BAD_REQUEST",
+      "message": "invalid request format"
+    },
+    "status": 400
+  },
+  "failedCasesUserIdNotFound": {
+    "error": {
+      "code": "USER_NOT_FOUND",
+      "message": "invalid user id / not found"
+    },
+    "status": 400
+  }
+}
